@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'users/' , to: 'users#index' , as:'users'
-  get 'user/:id' , to: 'users#show', as:'user'
+  # get 'users/' , to: 'users#index' , as:'users'
+  # get 'user/:id' , to: 'users#show', as:'user'
+  resources :users
   resources :cars
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :authors do
+    resources :posts , only: [:index, :new, :create]
+  end
 end
